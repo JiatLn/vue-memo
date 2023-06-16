@@ -1,8 +1,8 @@
 {
-  "name": "vvtt",
+  "name": "vue-memo",
   "type": "module",
-  "version": "1.2.1",
-  "description": "VVTT is means Vite-Vue-Ts-Template :)",
+  "version": "0.0.1",
+  "description": "a vue memo demo",
   "author": {
     "name": "JiatLn",
     "email": "lne128gene980@163.com"
@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JiatLn/vvtt.git"
+    "url": "https://github.com/JiatLn/vue-memo.git"
   },
   "scripts": {
     "dev": "vite",
