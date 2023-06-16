@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@iconify-icons/ph':
+    specifier: ^1.2.4
+    version: 1.2.4
   '@unocss/reset':
     specifier: ^0.53.1
     version: 0.53.1
@@ -825,6 +828,12 @@ packages:
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
+
+  /@iconify-icons/ph@1.2.4:
+    resolution: {integrity: sha512-jYpLrjUg46eNiOJOjYrtipYS+rTc891aQoSP3ic1l130n7Q6sC23z9xQ4tGKeYNL0h7EB/OdMOZrsc+6bCHxBA==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: false
 
   /@iconify/json@2.2.79:
     resolution: {integrity: sha512-sxuoFm9n5CiW+rFnfKiwIRWq3J2rM/FJ0C3UMgTX4fhKWZKo1/KVJZiHce7xJX5vZFnoifKdMFOKdSpy+o7mKg==}

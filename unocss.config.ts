@@ -15,6 +15,7 @@ export default defineConfig({
       'btn',
       'px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 dark:border-purple-800 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 ring-purple-600 ring-opacity-40 cursor-pointer text-center',
     ],
+    ['alink', 'border-b border-b-dashed border-b-transparent hover:border-b-brand-primary  transition duration-300 cp hover:text-brand-primary'],
   ],
   theme: {
     colors: {
