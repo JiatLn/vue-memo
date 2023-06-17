@@ -1,34 +1,8 @@
 <script setup lang="ts">
+import { animals } from '@/data/animals'
+import { loadMedia } from '@/utils'
+
 const input = ref('mie')
-
-interface Animal {
-  sound: string
-  name: string
-  emoji: string
-}
-
-const animals: Array<Animal> = [
-  {
-    sound: 'mie',
-    name: 'sheep',
-    emoji: '🐑',
-  },
-  {
-    sound: 'miao',
-    name: 'cat',
-    emoji: '🐈',
-  },
-  {
-    sound: 'gaga',
-    name: 'duck',
-    emoji: '🦆',
-  },
-  {
-    sound: 'woff',
-    name: 'fox',
-    emoji: '🦊',
-  },
-]
 
 const animal = computed(() => {
   return animals.find(animal => animal.sound === input.value)
@@ -42,15 +16,25 @@ watch(animal, (val) => {
   if (val) {
     shouldUpdate.value = val?.name
     randNum.value = ~~(Math.random() * ANIMAL_CNT)
+    if (val.media) {
+      loadMedia(val.media)
+    }
   }
+}, {
+  immediate: true,
 })
 </script>
 
 <template>
-  <div h-90vh w-full overflow-y-scroll overflow-x-hidden flex="~ col">
+  <div h-90vh w-full overflow-hidden flex="~ col">
     <div flex="c" gap-10px py-2>
-      <span>Please input a animal sound(e.g. woff): </span>
-      <input v-model="input" border="dashed #1890ff 1px" type="text" py-2 px-4>
+      <div flex="c" gap-10px>
+        <span>Please input a animal sound(e.g. moo 🐄): </span>
+        <input v-model="input" placeholder="type animal sound" border="dashed #1890ff 1px" type="text" py-2 px-4>
+      </div>
+      <div v-if="animal?.media" title="play" cp @click="loadMedia(animal?.media)">
+        🔊
+      </div>
     </div>
     <div v-memo="[shouldUpdate]" flex="~ wrap" gap-10px w-full p-2 select-none>
       <div v-for="i in ANIMAL_CNT" :key="i" class="animal-warpper" :class="{ scale: Math.abs(i - randNum) % 8 === 0 }" :data-index="i">
