@@ -5,7 +5,7 @@ import { loadMedia } from '@/utils'
 const input = ref('mie')
 
 const animal = computed(() => {
-  return animals.find(animal => animal.sound === input.value)
+  return animals.find(animal => animal.sound === input.value.trim().toLowerCase())
 })
 
 const shouldUpdate = ref<string | null>()
@@ -26,17 +26,19 @@ watch(animal, (val) => {
 </script>
 
 <template>
-  <div h-90vh w-full overflow-hidden flex="~ col">
-    <div flex="c" gap-10px py-2>
-      <div flex="c" gap-10px>
-        <span>Please input a animal sound(e.g. moo 🐄): </span>
-        <input v-model="input" placeholder="type animal sound" border="dashed #1890ff 1px" type="text" py-2 px-4>
-      </div>
-      <div v-if="animal?.media" title="play" cp @click="loadMedia(animal?.media)">
-        🔊
+  <div h-90vh w-full overflow-hidden flex="~ col" font-mono>
+    <div flex="c lt-sm:col" gap-10px py-2 border-b>
+      <div flex="c lt-sm:col" gap-10px>
+        <span>Please input a animal sound(e.g. moo 🐄).</span>
+        <div flex="c" gap-2 w-full px-2>
+          <input v-model="input" flex-1 placeholder="type animal sound" rounded-full border="~ #1890ff 2px" type="text" py-2 px-4>
+          <div v-if="animal?.media" title="play" cp @click="loadMedia(animal?.media)">
+            🔊
+          </div>
+        </div>
       </div>
     </div>
-    <div v-memo="[shouldUpdate]" flex="~ wrap" gap-10px w-full p-2 select-none>
+    <div v-memo="[shouldUpdate]" flex="~ wrap" gap-10px w-full p-2 select-none overflow-hidden bg-yellow-300>
       <div v-for="i in ANIMAL_CNT" :key="i" class="animal-warpper" :class="{ scale: Math.abs(i - randNum) % 8 === 0 }" :data-index="i">
         <div class="animal">
           {{ animal?.emoji }}
@@ -44,9 +46,10 @@ watch(animal, (val) => {
       </div>
     </div>
   </div>
-  <div text-center mt-4 flex="c" gap-2>
+  <div text-center mt-4 px-2 flex="c wrap" gap-2 font-mono>
     <div i-ph:warning-duotone text="yellow-600" />
-    Not update with you input? Please provide animal sounds and emoji in <a color="#9333ea" alink href="https://github.com/JiatLn/vue-memo/issues" target="_blank">issue</a>!!!
+    <div>Not update with you input?</div>
+    <div>Please provide animal sounds and emoji in <a inline="block!" color="#9333ea" alink href="https://github.com/JiatLn/vue-memo/issues" target="_blank">issue</a> :)</div>
   </div>
 </template>
 
@@ -59,11 +62,12 @@ input {
 }
 
 .animal-warpper {
+  flex: 1;
   font-size: 20px;
   cursor: pointer;
 
   .animal {
-    animation: animal-rotate linear 1s infinite;
+    animation: animal-rotate linear 2s infinite;
   }
 
   &:hover,
