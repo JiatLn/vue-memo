@@ -6,7 +6,7 @@
 
 html {
   color: #555;
-  @apply font-mono;
+  @apply font-mono bg-blue-200;
 
   &.dark {
     color: #bbb;
